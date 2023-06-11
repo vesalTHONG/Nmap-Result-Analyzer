@@ -27,7 +27,7 @@ def process_nmap_output(output_file):
 
         parts = line.strip().split()
 
-        if len(parts) >= 3:
+        if len(parts) >= 3 and "cipher" not in line:
             cipher = parts[1]
             strength = parts[-1]
             results.append({"cipher": cipher, "strength": strength})
@@ -40,7 +40,6 @@ def process_nmap_output(output_file):
 # target_ip = input("Enter target IP: ")
 # output_file = input("Enter output file name: ")
 # run_nmap_scan(target_ip, output_file)
-
 output_file = "test1.txt"
 results = process_nmap_output(output_file)
 json_output = json.dumps(results, indent=4)
